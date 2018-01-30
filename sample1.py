@@ -1,7 +1,10 @@
+import fileinput
+
 def inputNumbers():
-    numberListString = raw_input("Please input your numbers, separated by commas (and spaces): ")
+    print("Please input your numbers, separated by commas (and spaces): ")
+    numberListString = iter(fileinput.input()).__next__()
     numberListStringComponents = numberListString.split(",")
-    numberList = map(int, numberListStringComponents)
+    numberList = list(map(int, numberListStringComponents))
     return numberList
 
 def computeNumberOfPairs(numberList):
@@ -35,6 +38,7 @@ def computeIncreasingPairRatio(numberList):
     increasingPairRatio = float(numberOfIncreasingPairs) / float(numberOfAllPairs)
     return increasingPairRatio
 
-numberList = inputNumbers()
-increasingPairRatio = computeIncreasingPairRatio(numberList)
-print(str(increasingPairRatio))
+if __name__=="__main__":
+    numberList = inputNumbers()
+    increasingPairRatio = computeIncreasingPairRatio(numberList)
+    print(str(increasingPairRatio))
